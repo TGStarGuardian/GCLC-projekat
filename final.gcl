@@ -1,0 +1,179 @@
+ang_picture 0 0 150 150
+ang_origin 0 0
+animation_frames 200 10
+
+point O 95 50
+point S 65 50
+
+color 0 0 0
+circle c O S
+fillcircle O S
+
+
+% color 0 0 0
+% cmark_rt O
+% cmark_rt S
+
+% parametar za rotaciju
+point T 0 0.18 360 0.5
+
+% imamo tacku na svakih 60 stepeni
+distance r O S
+number d 0.18
+%gety d T
+number x 0
+number y 0
+number t 60
+number pi 3.1415926535897932
+number i 0
+getx s T
+while { i < 6 } {
+
+expression x { r*cos((s + t)*2*pi/360) + 95 }
+expression y { r*sin((s + t)*2*pi/360) + 50 }
+
+point X x y
+color 0 0 0
+%drawsegment O X
+
+line l O X
+perp n O l
+%drawline n
+
+intersec2 N1 N2 c n
+%cmark_rt N1
+
+towards K O N1 d
+% cmark_rt K
+color 140 0 0
+drawellipse O K X
+
+color 140 0 0 
+number j 0
+while { j < 100 } {
+  towards K O K 0.985
+  drawellipse O K X
+  expression j { j + 1 }
+}
+
+expression t { t + 60 }
+expression i { i  + 1 }
+}
+
+color 0 0 0
+point S 90 50
+circle c O S
+fillcircle O S
+
+color 200 0 210
+point O 32 50
+point S 2 50
+
+fillcircle O S
+
+point S1 8 50
+color 0 0 0
+drawcircle O S
+drawcircle O S1
+point S2 15 50
+drawcircle O S2
+point S3 22 50
+drawcircle O S3
+point S4 27 50
+fillcircle O S4
+
+point X 0 0
+
+number a 90
+while { a < 360 } {
+  expression x { 32 + 10*cos((a + s)*2*pi/360) }
+  expression y { 50 + 10*sin((a + s)*2*pi/360) }
+  point Tomoe x y
+  point Y 0 1.5
+  translate Tomoe1 X Y Tomoe
+  fillcircle Tomoe Tomoe1
+  expression a { a + 120 }
+
+number i 0
+number r 0.1
+number sign 0
+if_then_else { a == 90 } {
+  expression sign { 1 }
+} {
+  expression sign { -1 }
+}
+expression x { x + sign*0.5 }
+expression y { y - 2 }
+while { i < 5 } {
+expression r { r*0.92 }
+ang_origin x y
+ang_draw_parametric_curve t {0; t < 1.57; t+0.05}{sign*(r*sqrt(3)*cos(t)) ; r*sqrt(3)*sin(t)}
+
+ang_draw_parametric_curve t {-sqrt(3)/2; t < 1.57; t+0.05}{sign*r*2*cos(t); r*(2*sin(t) + 1)}
+
+
+expression i { i + 1 }
+}
+
+}
+
+
+number a 30
+while { a < 360 } {
+  expression x { 32 + 17*cos((a + s)*2*pi/360) }
+  expression y { 50 + 17*sin((a + s)*2*pi/360) }
+  point Tomoe x y
+  point Y 0 1.5
+  translate Tomoe1 X Y Tomoe
+  fillcircle Tomoe Tomoe1
+  expression a { a + 120 }
+
+number i 0
+number r 0.1
+expression x { x + 0.5 }
+expression y { y - 2 }
+while { i < 5 } {
+expression r { r*0.92 }
+ang_origin x y
+ang_draw_parametric_curve t {0; t < 1.57; t+0.05}{(r*sqrt(3)*cos(t)) ; r*sqrt(3)*sin(t)}
+
+ang_draw_parametric_curve t {-sqrt(3)/2; t < 1.57; t+0.05}{r*2*cos(t); r*(2*sin(t) + 1)}
+
+
+expression i { i + 1 }
+}
+}
+
+
+% color 255 255 255
+
+expression a { 27.5 + s }
+number pi 3.14
+number d 10.5
+expression x { 95 + d*cos(2*pi*a/360) }
+expression y { 50 + d*sin(2*pi*a/360) }
+point A x y
+expression x { 95 + d*cos(2*pi*(a+120)/360) }
+expression y { 50 + d*sin(2*pi*(a+120)/360) }
+point B x y
+expression x { 95 + d*cos(2*pi*(a+240)/360) }
+expression y { 50 + d*sin(2*pi*(a+240)/360) }
+point C x y
+color 0 0 0
+drawsegment A B
+drawsegment A C
+drawsegment B C
+
+expression x { 95 + d*cos(2*pi*(a+60)/360) }
+expression y { 50 + d*sin(2*pi*(a+60)/360) }
+point A x y
+expression x { 95 + d*cos(2*pi*(a+180)/360) }
+expression y { 50 + d*sin(2*pi*(a+180)/360) }
+point B x y
+expression x { 95 + d*cos(2*pi*(a+300)/360) }
+expression y { 50 + d*sin(2*pi*(a+300)/360) }
+point C x y
+color 0 0 0
+drawsegment A B
+drawsegment A C
+drawsegment B C
